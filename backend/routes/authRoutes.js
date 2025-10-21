@@ -1,95 +1,79 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
-const passport = require("passport");
-const User = require("../models/User"); // Adjust path if needed
+const User = require("../models/User"); // adjust path if needed
+const passport = require("../config/passport");
+const express = require("express");
+const passport = require("../config/passport");
 
 const router = express.Router();
 
-// ============ REGISTER (manual email & password) ============
+
+// Register Route
 router.post("/register", async (req, res) => {
   const { email, password } = req.body;
 
+  if (!email || !password) {
+    return res.status(400).json({ success: false, message: "Email and password are required" });
+  }
+
   try {
-    // Check if user exists
-    let user = await User.findOne({ email: email.toLowerCase() });
-    if (user) {
-      return res.status(400).json({ message: "Email already registered" });
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ success: false, message: "User already exists" });
     }
 
-    // Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser = new User({ email, password: hashedPassword });
 
-    // Create new user
-    user = new User({
-      email: email.toLowerCase(),
-      password: hashedPassword,
-      authProvider: "local",
-    });
-
-    await user.save();
-
-    res.status(201).json({ message: "Registration successful" });
-  } catch (err) {
-    console.error("Registration error:", err);
-    res.status(500).json({ message: "Server error during registration" });
+    await newUser.save();
+    res.json({ success: true, message: "User registered successfully" });
+  } catch (error) {
+    res.status(500).json({ success: false, message: "Server error", error });
   }
 });
 
-// ============ LOGIN (manual email & password) ============
+// Login Route
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    // Find user
-    const user = await User.findOne({ email: email.toLowerCase() });
-    if (!user || !user.password) {
-      return res.status(400).json({ message: "Invalid email or password" });
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ success: false, message: "User not found" });
     }
 
-    // Compare password
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.status(400).json({ message: "Invalid email or password" });
+      return res.status(401).json({ success: false, message: "Invalid credentials" });
     }
 
-    // Login with passport
-    req.login(user, (err) => {
-      if (err) {
-        return res.status(500).json({ message: "Login failed" });
-      }
-      return res.json({ message: "Login successful", user });
-    });
-  } catch (err) {
-    console.error("Login error:", err);
-    res.status(500).json({ message: "Server error during login" });
+    res.json({ success: true, message: "Login successful", userId: user._id });
+  } catch (error) {
+    res.status(500).json({ success: false, message: "Server error", error });
   }
 });
 
-// ============ LOGOUT ============
-router.get("/logout", (req, res) => {
-  req.logout(() => {
-    res.json({ message: "Logged out successfully" });
-  });
+// Google OAuth (placeholder - to implement next)
+router.get("/auth/google", (req, res) => {
+  res.json({ success: true, message: "Google OAuth route coming soon" });
 });
 
-// ============ GOOGLE AUTH ============
-router.get(
-  "/google",
+// Google Login Route
+router.get("/auth/google",
   passport.authenticate("google", { scope: ["profile", "email"] })
 );
 
+// Google Callback
 router.get(
-  "/google/callback",
-  passport.authenticate("google", { failureRedirect: "/login-failed" }),
+  "/auth/google/callback",
+  passport.authenticate("google", { failureRedirect: "/" }),
   (req, res) => {
-    // ✅ SUCCESS LOGIN (Redirect to dashboard)
-    res.redirect("/dashboard");
+    res.json({
+      success: true,
+      message: "Google Login Successful",
+      user: req.user
+    });
   }
 );
-
-// ============ LOGIN FAILED PAGE ============
-router.get("/login-failed", (req, res) => {
-  res.status(401).json({ message: "Google login failed" });
-});
 
 module.exports = router;
