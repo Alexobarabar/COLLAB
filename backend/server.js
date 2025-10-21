@@ -25,6 +25,11 @@ app.get("/", (req, res) => {
   res.json({ success: true, message: "Backend API is running 🚀" });
 });
 
+// Health check for frontend connectivity and uptime probes
+app.get("/api/health", (req, res) => {
+  res.json({ success: true, status: "ok" });
+});
+
 // Register Route
 app.post("/api/register", async (req, res) => {
   const { email, password } = req.body;
