@@ -1,24 +1,30 @@
-import logo from './logo.svg';
+import React from 'react';
+import { AuthProvider, useAuth } from './contexts/AuthContext';
+import Auth from './components/Auth';
+import Dashboard from './components/Dashboard';
 import './App.css';
+
+function AppContent() {
+  const { user, loading } = useAuth();
+
+  if (loading) {
+    return (
+      <div className="app-loading">
+        <div className="loading-spinner">Loading...</div>
+      </div>
+    );
+  }
+
+  return user ? <Dashboard /> : <Auth />;
+}
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthProvider>
+      <div className="App">
+        <AppContent />
+      </div>
+    </AuthProvider>
   );
 }
 
