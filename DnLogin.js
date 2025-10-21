@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // Middleware to read JSON and form data
 app.use(express.json());
@@ -20,6 +20,16 @@ app.get('/', (req, res) => {
 // Login route
 app.post('/login', (req, res) => {
   const { email, password } = req.body;
+  if (
+    typeof email !== 'string' ||
+    typeof password !== 'string' ||
+    email.trim() === '' ||
+    password.trim() === ''
+  ) {
+    return res
+      .status(400)
+      .json({ success: false, message: 'Email and password are required.' });
+  }
 
   // Check user credentials
   const user = users.find(u => u.email === email && u.password === password);
