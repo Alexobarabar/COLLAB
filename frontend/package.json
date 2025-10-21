@@ -1,0 +1,13 @@
+{
+  "name": "buksu-it-evaluation-frontend",
+  "version": "1.0.0",
+  "description": "Frontend for BukSU IT Evaluation System",
+  "main": "index.js",
+  "scripts": {
+    "start": "echo 'Frontend is served by the backend server'",
+    "dev": "echo 'Frontend is served by the backend server'"
+  },
+  "keywords": ["bukidnon", "state", "university", "it", "evaluation"],
+  "author": "Alexander John Abarabar",
+  "license": "ISC"
+}
