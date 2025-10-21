@@ -20,6 +20,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use(
   session({
+    
     secret: process.env.SESSION_SECRET || "some_secret_key",
     resave: false,
     saveUninitialized: false,
@@ -247,7 +248,7 @@ app.get(
 );
 
 // ---------- Dashboard Route Import ----------
-const dashboardRoute = require("./dashboard");
+const dashboardRoute = require("./routes/dashboard");
 app.use("/dashboard", dashboardRoute);
 
 // ---------- Start Server ----------
