@@ -1,5 +1,6 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
+const axios = require("axios");
 const User = require("../models/User"); // adjust path if needed
 const passport = require("../config/passport");
 
@@ -35,9 +36,30 @@ router.post("/register", async (req, res) => {
 
 // Login Route
 router.post("/login", async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, recaptchaToken } = req.body;
 
   try {
+    // Verify reCAPTCHA (temporarily disabled for testing)
+    if (!recaptchaToken) {
+      return res
+        .status(400)
+        .json({ success: false, message: "reCAPTCHA verification required" });
+    }
+
+    // For testing, skip reCAPTCHA verification if using test token
+    if (recaptchaToken !== "test") {
+      // Verify reCAPTCHA with Google
+      const recaptchaResponse = await axios.post(
+        `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${recaptchaToken}`
+      );
+
+      if (!recaptchaResponse.data.success) {
+        return res
+          .status(400)
+          .json({ success: false, message: "reCAPTCHA verification failed" });
+      }
+    }
+
     const user = await User.findOne({ email });
     if (!user) {
       return res
@@ -52,22 +74,34 @@ router.post("/login", async (req, res) => {
         .json({ success: false, message: "Invalid credentials" });
     }
 
-    res.json({ success: true, message: "Login successful", userId: user._id });
+    // Create a simple token (in production, use JWT)
+    const token = `user_${user._id}_${Date.now()}`;
+
+    res.json({
+      success: true,
+      message: "Login successful",
+      userId: user._id,
+      token: token
+    });
   } catch (error) {
+    console.error('Login error:', error);
     res.status(500).json({ success: false, message: "Server error", error });
   }
 });
 
 // Google OAuth Login
-router.get("/auth/google", passport.authenticate("google", { scope: ["profile", "email"] }));
+router.get("/google", passport.authenticate("google", { scope: ["profile", "email"] }));
 
 // Google OAuth Callback
 router.get(
-  "/auth/google/callback",
-  passport.authenticate("google", { failureRedirect: "/" }),
+  "/google/callback",
+  passport.authenticate("google", { failureRedirect: "http://localhost:3000/login?error=google_auth_failed" }),
   (req, res) => {
-    // Redirect to frontend dashboard after successful Google login
-    res.redirect("http://localhost:3000/dashboard");
+    // Create a simple token for the authenticated user
+    const token = `user_${req.user._id}_${Date.now()}`;
+    
+    // Redirect to frontend with token as query parameter
+    res.redirect(`http://localhost:3000/dashboard?token=${token}`);
   }
 );
 
