@@ -1,7 +1,7 @@
 {
-  "name": "y",
+  "name": "instructor-evaluation-backend",
   "version": "1.0.0",
-  "description": "backend",
+  "description": "Backend API for IT Instructor Evaluation and Feedback System",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -18,10 +18,13 @@
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "express-session": "^1.18.2",
+    "express-validator": "^7.0.1",
+    "helmet": "^7.0.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.19.2",
     "passport": "^0.7.0",
-    "passport-google-oauth20": "^2.0.0"
+    "passport-google-oauth20": "^2.0.0",
+    "react-google-recaptcha": "^3.1.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
