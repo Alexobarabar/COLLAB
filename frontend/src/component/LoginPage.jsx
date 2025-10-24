@@ -1,6 +1,6 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import ReCAPTCHA from "react-google-recaptcha";
 
 const LoginPage = ({ onLogin }) => {
@@ -11,6 +11,36 @@ const LoginPage = ({ onLogin }) => {
   const [recaptchaToken, setRecaptchaToken] = useState("");
   const recaptchaRef = useRef(null);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // Handle Google OAuth errors from URL parameters
+  useEffect(() => {
+    const urlParams = new URLSearchParams(location.search);
+    const error = urlParams.get('error');
+    
+    if (error) {
+      let errorMessage = "Google login failed. Please try again.";
+      
+      switch (error) {
+        case 'google_auth_failed':
+          errorMessage = "Google authentication failed. Please try again.";
+          break;
+        case 'no_user_found':
+          errorMessage = "User not found after Google authentication.";
+          break;
+        case 'callback_error':
+          errorMessage = "Error processing Google login. Please try again.";
+          break;
+        default:
+          errorMessage = `Google login error: ${error}`;
+      }
+      
+      setMessage(errorMessage);
+      
+      // Clear the error from URL
+      navigate('/login', { replace: true });
+    }
+  }, [location.search, navigate]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -114,7 +144,17 @@ const LoginPage = ({ onLogin }) => {
             {loading ? 'Signing in...' : 'Sign in with Email'}
           </button>
         </form>
-        
+
+        {/* Forgot Password Link */}
+        <div style={styles.forgotPassword}>
+          <button
+            style={styles.forgotPasswordButton}
+            onClick={() => navigate("/forgot-password")}
+          >
+            Forgot Password?
+          </button>
+        </div>
+
         {message && <div style={styles.message}>{message}</div>}
       </div>
     </div>
@@ -227,6 +267,19 @@ const styles = {
     backgroundColor: "#f8d7da",
     color: "#721c24",
     border: "1px solid #f5c6cb",
+  },
+  forgotPassword: {
+    marginTop: "1rem",
+    textAlign: "center",
+  },
+  forgotPasswordButton: {
+    background: "none",
+    border: "none",
+    color: "#007bff",
+    cursor: "pointer",
+    fontSize: "14px",
+    textDecoration: "underline",
+    transition: "color 0.3s ease",
   },
 };
 
