@@ -18,7 +18,14 @@ passport.use(
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
+        // Check if profile has emails
+        if (!profile.emails || profile.emails.length === 0) {
+          console.error('Google OAuth: No email found in profile');
+          return done(new Error('No email found in Google profile'), null);
+        }
+
         const email = profile.emails[0].value;
+        console.log('Google OAuth: Processing user with email:', email);
         
         // First, try to find user by Google ID
         let user = await User.findOne({ googleId: profile.id });
@@ -32,6 +39,7 @@ passport.use(
             user.googleId = profile.id;
             user.authProvider = "google";
             await user.save();
+            console.log('Google OAuth: Updated existing user with Google ID');
           } else {
             // If no user exists at all, create a new one
             user = await User.create({
@@ -40,7 +48,10 @@ passport.use(
               password: null,
               authProvider: "google",
             });
+            console.log('Google OAuth: Created new user');
           }
+        } else {
+          console.log('Google OAuth: Found existing user by Google ID');
         }
 
         return done(null, user);

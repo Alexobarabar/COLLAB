@@ -32,24 +32,30 @@ app.use(passport.session());
 const authRoutes = require('./routes/authRoutes');
 const instructorRoutes = require('./routes/instructorRoutes');
 const evaluationRoutes = require('./routes/evaluationRoutes');
+const statsRoutes = require('./routes/statsRoutes');
 
 app.use('/api/auth', authRoutes);
 app.use('/api/instructors', instructorRoutes);
 app.use('/api/evaluations', evaluationRoutes);
+app.use('/api/stats', statsRoutes);
 
 // Connect to MongoDB
 mongoose
   .connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log("✅ MongoDB Connected"))
-  .catch((err) => console.error("❌ MongoDB Error:", err));
+  .then(() => {
+    console.log("✅ MongoDB Connected");
 
-// Default route (API only, no HTML)
-app.get("/", (req, res) => {
-  res.json({ success: true, message: "Backend API is running 🚀" });
-});
+    // Default route (API only, no HTML)
+    app.get("/", (req, res) => {
+      res.json({ success: true, message: "Backend API is running 🚀" });
+    });
 
-
-// Start Server
-app.listen(PORT, () => {
-  console.log(`🚀 Server running at http://localhost:${PORT}`);
-});
+    // Start Server only after DB connection
+    app.listen(PORT, () => {
+      console.log(`🚀 Server running at http://localhost:${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.error("❌ MongoDB Error:", err);
+    process.exit(1); // Exit if DB connection fails
+  });
