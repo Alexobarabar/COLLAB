@@ -36,3 +36,160 @@
     transform: rotate(360deg);
   }
 }
+
+.print-container {
+  position: fixed;
+  top: -9999px;
+  left: -9999px;
+  width: 210mm;
+  min-height: 297mm;
+  background: #ffffff;
+  color: #0f172a;
+  font-family: 'Times New Roman', 'Merriweather', serif;
+  font-size: 12px;
+  padding: 32px 40px;
+  box-sizing: border-box;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.print-wrapper {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.print-header {
+  text-align: left;
+  border-bottom: 2px solid #111827;
+  padding-bottom: 20px;
+  margin-bottom: 24px;
+}
+
+.print-header-brand {
+  text-align: center;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.print-header-brand p {
+  margin: 2px 0;
+}
+
+.print-header-sup {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.print-header-link {
+  color: #1d4ed8;
+  text-decoration: underline;
+  font-size: 12px;
+}
+
+.print-header-subtitle {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 12px;
+  margin: 0 0 6px;
+  color: #4b5563;
+}
+
+.print-header-title {
+  font-size: 20px;
+  margin: 0 0 16px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.print-section {
+  margin-bottom: 24px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px 20px;
+  background: #fafafa;
+}
+
+.print-section h2 {
+  margin: 0 0 16px;
+  font-size: 14px;
+  color: #111827;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.print-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.print-table th,
+.print-table td {
+  border: 1px solid #1f2937;
+  padding: 10px 12px;
+  text-align: left;
+  font-size: 12px;
+  vertical-align: top;
+}
+
+.print-table th {
+  background: #0f172a;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.print-table td {
+  background: #ffffff;
+}
+
+.print-table tbody tr:nth-child(odd) td {
+  background: #f9fafb;
+}
+
+.print-table tbody tr td[colspan="100%"],
+.print-table tbody tr td[colspan="2"] {
+  text-align: center;
+  font-style: italic;
+  color: #6b7280;
+}
+
+.print-table th:first-child,
+.print-table td:first-child {
+  width: 35%;
+}
+
+@media print {
+  body {
+    background: #ffffff !important;
+    margin: 0;
+    padding: 0;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  #root > *:not(.print-container) {
+    display: none !important;
+  }
+
+  .print-container,
+  .print-container * {
+    visibility: visible;
+  }
+
+  .print-container {
+    position: static;
+    left: 0;
+    top: 0;
+    width: 210mm;
+    min-height: 297mm;
+    padding: 32px 40px;
+    pointer-events: auto;
+  }
+}

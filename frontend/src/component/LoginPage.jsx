@@ -22,14 +22,33 @@ const LoginPage = ({ onLogin }) => {
       let errorMessage = "Google login failed. Please try again.";
       
       switch (error) {
+        case 'instructor_not_registered':
+          errorMessage = "This Google account is not registered in the system. Please contact the administrator.";
+          break;
+        case 'account_not_found':
+          errorMessage = "Account not found. Please use an authorized instructor or dean account.";
+          break;
+        case 'account_archived':
+          errorMessage = "Account disabled. Please contact the Dean!";
+          break;
         case 'google_auth_failed':
           errorMessage = "Google authentication failed. Please try again.";
+          break;
+        case 'google_auth_not_configured':
+          errorMessage = "Google login is not configured. Please contact the administrator.";
           break;
         case 'no_user_found':
           errorMessage = "User not found after Google authentication.";
           break;
         case 'callback_error':
           errorMessage = "Error processing Google login. Please try again.";
+          break;
+        case 'role_mismatch':
+          errorMessage = "Invalid role selected. Please select the correct role for this account.";
+          break;
+        case 'role_required':
+          errorMessage = "Please select your role first.";
+          setTimeout(() => navigate("/", { replace: true }), 2000);
           break;
         default:
           errorMessage = `Google login error: ${error}`;
@@ -54,20 +73,45 @@ const LoginPage = ({ onLogin }) => {
       return;
     }
 
+    // Get selected role from localStorage
+    const selectedRole = localStorage.getItem('selectedRole');
+    if (!selectedRole) {
+      setMessage("Please select your role first");
+      setLoading(false);
+      navigate("/", { replace: true });
+      return;
+    }
+
     try {
       const res = await axios.post("http://localhost:5000/api/auth/login", {
         email,
         password,
         recaptchaToken,
+        selectedRole,
       });
 
       if (res.data.success) {
+        // Validate that the returned role matches the selected role
+        const returnedRole = res.data.role?.toLowerCase();
+        const storedRole = selectedRole?.toLowerCase();
+        
+        if (returnedRole !== storedRole) {
+          setMessage("Role mismatch detected. Please select the correct role and try again.");
+          localStorage.removeItem('token');
+          localStorage.removeItem('tokenExpiry');
+          localStorage.removeItem('selectedRole');
+          setLoading(false);
+          return;
+        }
+        
         // Store authentication token (assuming backend returns one)
         localStorage.setItem('token', res.data.token || 'authenticated');
         // Set token expiry to 24 hours from now
         const expiryTime = new Date().getTime() + (24 * 60 * 60 * 1000);
         localStorage.setItem('tokenExpiry', expiryTime.toString());
-        onLogin();
+        // Ensure selectedRole matches the returned role
+        localStorage.setItem('selectedRole', returnedRole);
+        onLogin(email);
         navigate("/dashboard");
       } else {
         setMessage(res.data.message || "Login failed");
@@ -78,19 +122,76 @@ const LoginPage = ({ onLogin }) => {
         }
       }
     } catch (err) {
-      setMessage(err.response?.data?.message || "Login failed");
+      // Handle specific error cases
+      const errorResponse = err.response?.data;
+      const statusCode = err.response?.status;
+      
+      let errorMessage = "Login failed. Please try again.";
+      
+      // Handle 401 Unauthorized errors (invalid email or credentials)
+      if (statusCode === 401) {
+        if (errorResponse?.error === "INVALID_EMAIL" || errorResponse?.message === "Email not found") {
+          errorMessage = "Invalid email address. Please check your credentials and try again.";
+        } else if (errorResponse?.error === "INVALID_CREDENTIALS") {
+          errorMessage = "Invalid email address. Please check your credentials and try again.";
+        } else if (errorResponse?.error === "ACCOUNT_ARCHIVED") {
+          errorMessage = errorResponse.message || "Account disabled. Please contact the Dean!";
+        } else if (errorResponse?.error === "GOOGLE_LOGIN_REQUIRED") {
+          errorMessage = errorResponse.message || "This account uses Google login. Please use the 'Continue with Google' button.";
+        } else {
+          // Generic 401 error
+          errorMessage = errorResponse?.message || "Invalid email address. Please check your credentials and try again.";
+        }
+      } else if (statusCode === 403) {
+        // Handle role mismatch errors
+        if (errorResponse?.error === "ROLE_MISMATCH") {
+          errorMessage = errorResponse.message || "Invalid role selected. Please select the correct role for this account.";
+        } else {
+          errorMessage = errorResponse?.message || "Access denied. Please select the correct role.";
+        }
+      } else if (statusCode === 400) {
+        // Handle validation errors (e.g., reCAPTCHA, role required)
+        if (errorResponse?.error === "ROLE_REQUIRED") {
+          errorMessage = errorResponse.message || "Please select your role first.";
+          // Redirect to role selection
+          setTimeout(() => navigate("/", { replace: true }), 2000);
+        } else {
+          errorMessage = errorResponse?.message || "Please complete all required fields.";
+        }
+      } else if (statusCode >= 500) {
+        // Server errors
+        errorMessage = "Server error. Please try again later.";
+      } else if (errorResponse?.message) {
+        // Use backend error message if available
+        errorMessage = errorResponse.message;
+      }
+      
+      setMessage(errorMessage);
+      
       // Reset reCAPTCHA on error
       if (recaptchaRef.current) {
         recaptchaRef.current.reset();
         setRecaptchaToken("");
       }
+      
+      // Ensure no navigation happens on error
+      // Don't set any authentication state
     } finally {
       setLoading(false);
     }
   };
 
   const handleGoogleLogin = () => {
-    window.location.href = "http://localhost:5000/api/auth/google";
+    // Get selected role from localStorage
+    const selectedRole = localStorage.getItem('selectedRole');
+    if (!selectedRole) {
+      setMessage("Please select your role first");
+      setTimeout(() => navigate("/", { replace: true }), 2000);
+      return;
+    }
+    
+    // Pass selected role as query parameter
+    window.location.href = `http://localhost:5000/api/auth/google?role=${encodeURIComponent(selectedRole)}`;
   };
 
   return (

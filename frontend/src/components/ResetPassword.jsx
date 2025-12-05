@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams, useParams } from "react-router-dom";
 
 const ResetPassword = () => {
   const [newPassword, setNewPassword] = useState("");
@@ -10,21 +10,25 @@ const ResetPassword = () => {
   const [token, setToken] = useState("");
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
+  const { token: tokenFromPath } = useParams();
 
   useEffect(() => {
     const tokenFromUrl = searchParams.get("token");
-    console.log('ResetPassword: URL search params:', window.location.search);
-    console.log('ResetPassword: Token from URL:', tokenFromUrl);
-    console.log('ResetPassword: Full URL:', window.location.href);
-    
-    if (tokenFromUrl) {
-      setToken(tokenFromUrl);
-      console.log('ResetPassword: Token set successfully');
-    } else {
-      console.log('ResetPassword: No token found in URL');
-      setMessage("Invalid reset link. Please request a new password reset.");
+    // Fallback: also try hash fragment (#token=...)
+    let tokenFromHash = null;
+    if (window.location.hash) {
+      const hashParams = new URLSearchParams(window.location.hash.replace(/^#/, ""));
+      tokenFromHash = hashParams.get("token");
     }
-  }, [searchParams]);
+
+    const resolvedToken = tokenFromUrl || tokenFromPath || tokenFromHash || "";
+
+    if (resolvedToken) {
+      setToken(resolvedToken);
+    } else {
+      setMessage("Missing token: open the link from your email or paste the token below.");
+    }
+  }, [searchParams, tokenFromPath]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -66,6 +70,9 @@ const ResetPassword = () => {
       <div style={styles.card}>
         <h2 style={styles.title}>Reset Password</h2>
         <p style={styles.subtitle}>Enter your new password</p>
+        <div style={{ fontSize: '12px', color: '#666', marginTop: '-8px' }}>
+          Detected token: {token ? (token.slice(0, 8) + '…') : 'none'}
+        </div>
 
         <form onSubmit={handleSubmit} style={styles.form}>
           <input

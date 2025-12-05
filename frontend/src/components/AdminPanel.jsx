@@ -6,12 +6,20 @@ const AdminPanel = () => {
   const [evaluations, setEvaluations] = useState([]);
   const [loading, setLoading] = useState(false);
   const [activeTab, setActiveTab] = useState('instructors');
+  // Evaluation Forms Management state
+  const [forms, setForms] = useState([]);
+  const [formsLoading, setFormsLoading] = useState(false);
+  const [showAddEvalForm, setShowAddEvalForm] = useState(false);
+  const [newEvalForm, setNewEvalForm] = useState({
+    title: '',
+    description: '',
+    googleFormLink: ''
+  });
+  const [formMessage, setFormMessage] = useState('');
   const [showAddForm, setShowAddForm] = useState(false);
   const [newInstructor, setNewInstructor] = useState({
     name: '',
-    email: '',
-    department: '',
-    courses: ''
+    email: ''
   });
 
   useEffect(() => {
@@ -21,13 +29,15 @@ const AdminPanel = () => {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const [instructorsRes, evaluationsRes] = await Promise.all([
+      const [instructorsRes, evaluationsRes, evalFormsRes] = await Promise.all([
         axios.get('http://localhost:5000/api/instructors'),
-        axios.get('http://localhost:5000/api/evaluations')
+        axios.get('http://localhost:5000/api/evaluations'),
+        axios.get('http://localhost:5000/api/evaluation-forms')
       ]);
       
       setInstructors(instructorsRes.data.instructors);
       setEvaluations(evaluationsRes.data.evaluations);
+      setForms(evalFormsRes.data.evaluationForms || []);
     } catch (error) {
       console.error('Error fetching data:', error);
     } finally {
@@ -35,16 +45,24 @@ const AdminPanel = () => {
     }
   };
 
+  const refreshForms = async () => {
+    try {
+      setFormsLoading(true);
+      const res = await axios.get('http://localhost:5000/api/evaluation-forms');
+      setForms(res.data.evaluationForms || []);
+    } catch (e) {
+      console.error('Error loading evaluation forms:', e);
+    } finally {
+      setFormsLoading(false);
+    }
+  };
+
   const handleAddInstructor = async (e) => {
     e.preventDefault();
     try {
-      const instructorData = {
-        ...newInstructor,
-        courses: newInstructor.courses.split(',').map(course => course.trim()).filter(course => course)
-      };
-
-      await axios.post('http://localhost:5000/api/instructors', instructorData);
-      setNewInstructor({ name: '', email: '', department: '', courses: '' });
+      await axios.post('http://localhost:5000/api/instructors', { name: newInstructor.name, email: newInstructor.email });
+      alert('Instructor added successfully! Login credentials sent to the provided email.');
+      setNewInstructor({ name: '', email: '' });
       setShowAddForm(false);
       fetchData();
     } catch (error) {
@@ -65,7 +83,7 @@ const AdminPanel = () => {
 
   const renderInstructors = () => (
     <div style={styles.tabContent}>
-      <div style={styles.header}>
+      <div style={styles.sectionHeader}>
         <h3>Manage Instructors</h3>
         <button
           style={styles.addButton}
@@ -95,23 +113,6 @@ const AdminPanel = () => {
               required
             />
           </div>
-          <div style={styles.formRow}>
-            <input
-              type="text"
-              placeholder="Department"
-              value={newInstructor.department}
-              onChange={(e) => setNewInstructor({...newInstructor, department: e.target.value})}
-              style={styles.input}
-              required
-            />
-            <input
-              type="text"
-              placeholder="Courses (comma separated)"
-              value={newInstructor.courses}
-              onChange={(e) => setNewInstructor({...newInstructor, courses: e.target.value})}
-              style={styles.input}
-            />
-          </div>
           <button type="submit" style={styles.submitButton}>
             Add Instructor
           </button>
@@ -122,11 +123,10 @@ const AdminPanel = () => {
         {instructors.map(instructor => (
           <div key={instructor._id} style={styles.instructorCard}>
             <div style={styles.instructorInfo}>
-              <h4>{instructor.name}</h4>
-              <p><strong>Email:</strong> {instructor.email}</p>
-              <p><strong>Department:</strong> {instructor.department}</p>
-              {instructor.courses.length > 0 && (
-                <p><strong>Courses:</strong> {instructor.courses.join(', ')}</p>
+              <h4 style={styles.instructorTitle}>{instructor.name}</h4>
+              <p style={styles.instructorText}><strong>Email:</strong> {instructor.email}</p>
+              {instructor.username && (
+                <p style={styles.instructorText}><strong>Username:</strong> {instructor.username}</p>
               )}
             </div>
             <div style={styles.instructorActions}>
@@ -154,10 +154,10 @@ const AdminPanel = () => {
               <span style={styles.course}>{evaluation.course}</span>
             </div>
             <div style={styles.evaluationDetails}>
-              <p><strong>Student:</strong> {evaluation.studentId?.email}</p>
-              <p><strong>Semester:</strong> {evaluation.semester}</p>
-              <p><strong>Overall Rating:</strong> {evaluation.ratings.overallRating}/5</p>
-              <p><strong>Submitted:</strong> {new Date(evaluation.submittedAt).toLocaleDateString()}</p>
+              <p style={styles.evaluationText}><strong>Student:</strong> {evaluation.studentId?.email}</p>
+              <p style={styles.evaluationText}><strong>Semester:</strong> {evaluation.semester}</p>
+              <p style={styles.evaluationText}><strong>Overall Rating:</strong> {evaluation.ratings.overallRating}/5</p>
+              <p style={styles.evaluationText}><strong>Submitted:</strong> {new Date(evaluation.submittedAt).toLocaleDateString()}</p>
             </div>
             {evaluation.feedback.strengths && (
               <div style={styles.feedback}>
@@ -173,9 +173,144 @@ const AdminPanel = () => {
     </div>
   );
 
+  const createEvaluationForm = async (e) => {
+    e.preventDefault();
+    setFormMessage('');
+    try {
+      const payload = {
+        title: newEvalForm.title.trim(),
+        description: newEvalForm.description.trim(),
+      };
+      if (newEvalForm.googleFormLink && newEvalForm.googleFormLink.trim()) {
+        payload.googleFormLink = newEvalForm.googleFormLink.trim();
+      }
+      const res = await axios.post('http://localhost:5000/api/evaluation-forms', payload);
+      setFormMessage('✅ New evaluation form successfully added and linked to Google Forms.');
+      setNewEvalForm({ title: '', description: '', googleFormLink: '' });
+      setShowAddEvalForm(false);
+      await refreshForms();
+    } catch (error) {
+      const msg = error.response?.data?.message || 'Error creating evaluation form';
+      setFormMessage(`❌ ${msg}`);
+    }
+  };
+
+  const handleDeleteForm = async (id) => {
+    if (!window.confirm('Delete this evaluation form?')) return;
+    try {
+      await axios.delete(`http://localhost:5000/api/evaluation-forms/${id}`);
+      await refreshForms();
+    } catch (e) {
+      alert('Failed to delete form.');
+    }
+  };
+
+  const toViewLink = (editOrResponderLink) => {
+    if (!editOrResponderLink) return '';
+    if (editOrResponderLink.includes('/edit')) {
+      return editOrResponderLink.replace(/\/edit(\?.*)?$/, '/viewform');
+    }
+    return editOrResponderLink;
+  };
+
+  const renderEvaluationForms = () => (
+    <div style={styles.tabContent}>
+      <div style={styles.sectionHeader}>
+        <h3>Evaluation Forms Management</h3>
+        <button
+          style={styles.addButton}
+          onClick={() => { setShowAddEvalForm(!showAddEvalForm); setFormMessage(''); }}
+        >
+          {showAddEvalForm ? 'Cancel' : 'Add Evaluation Form'}
+        </button>
+      </div>
+
+      {showAddEvalForm && (
+        <form onSubmit={createEvaluationForm} style={styles.form}>
+          <div style={styles.formRow}>
+            <input
+              type="text"
+              placeholder="Evaluation Form Title"
+              value={newEvalForm.title}
+              onChange={(e) => setNewEvalForm({ ...newEvalForm, title: e.target.value })}
+              style={styles.input}
+              required
+            />
+          </div>
+          <div style={styles.formRow}>
+            <input
+              type="text"
+              placeholder="Description"
+              value={newEvalForm.description}
+              onChange={(e) => setNewEvalForm({ ...newEvalForm, description: e.target.value })}
+              style={styles.input}
+            />
+          </div>
+          <div style={styles.formRow}>
+            <input
+              type="url"
+              placeholder="(Optional) Google Form Link"
+              value={newEvalForm.googleFormLink}
+              onChange={(e) => setNewEvalForm({ ...newEvalForm, googleFormLink: e.target.value })}
+              style={styles.input}
+            />
+          </div>
+          <button type="submit" style={styles.submitButton}>
+            Save
+          </button>
+        </form>
+      )}
+
+      {formMessage && (
+        <div style={{ marginBottom: '10px', color: formMessage.startsWith('✅') ? '#155724' : '#721c24', background: formMessage.startsWith('✅') ? '#d4edda' : '#f8d7da', padding: '10px', borderRadius: '6px' }}>
+          {formMessage}
+        </div>
+      )}
+
+      <div style={styles.formsTableWrapper}>
+        {formsLoading ? (
+          <div>Loading forms...</div>
+        ) : forms.length === 0 ? (
+          <div>No evaluation forms found.</div>
+        ) : (
+          <table style={styles.table}>
+            <thead>
+              <tr>
+                <th style={styles.th}>Title</th>
+                <th style={styles.th}>Description</th>
+                <th style={styles.th}>Date Created</th>
+                <th style={styles.th}>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {forms.map(f => (
+                <tr key={f._id}>
+                  <td style={styles.td}>{f.title}</td>
+                  <td style={styles.td}>{f.description || '—'}</td>
+                  <td style={styles.td}>{new Date(f.createdAt).toLocaleString()}</td>
+                  <td style={styles.td}>
+                    <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                      {f.googleFormLink && (
+                        <a href={f.googleFormLink} target="_blank" rel="noreferrer" style={styles.linkButton}>Edit Form</a>
+                      )}
+                      {(f.googleResponderLink || f.googleFormLink) && (
+                        <a href={toViewLink(f.googleResponderLink || f.googleFormLink)} target="_blank" rel="noreferrer" style={styles.secondaryLinkButton}>View Form</a>
+                      )}
+                      <button style={styles.deleteButton} onClick={() => handleDeleteForm(f._id)}>Delete</button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+      </div>
+    </div>
+  );
+
   return (
     <div style={styles.container}>
-      <div style={styles.header}>
+      <div style={styles.pageHeader}>
         <h1>Admin Panel</h1>
         <p>IT Instructor Evaluation System</p>
       </div>
@@ -199,11 +334,21 @@ const AdminPanel = () => {
         >
           View Evaluations
         </button>
+        <button
+          style={{
+            ...styles.tab,
+            ...(activeTab === 'forms' ? styles.activeTab : {})
+          }}
+          onClick={() => { setActiveTab('forms'); refreshForms(); }}
+        >
+          Evaluation Forms
+        </button>
       </div>
 
       <div style={styles.content}>
         {activeTab === 'instructors' && renderInstructors()}
         {activeTab === 'evaluations' && renderEvaluations()}
+        {activeTab === 'forms' && renderEvaluationForms()}
       </div>
     </div>
   );
@@ -214,7 +359,7 @@ const styles = {
     minHeight: '100vh',
     background: '#f5f5f5',
   },
-  header: {
+  pageHeader: {
     background: 'linear-gradient(135deg, #e74c3c 0%, #c0392b 100%)',
     color: 'white',
     padding: '40px 20px',
@@ -248,7 +393,7 @@ const styles = {
     maxWidth: '1200px',
     margin: '0 auto',
   },
-  header: {
+  sectionHeader: {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -304,11 +449,11 @@ const styles = {
   instructorInfo: {
     flex: 1,
   },
-  instructorInfo h4: {
+  instructorTitle: {
     margin: '0 0 10px 0',
     color: '#333',
   },
-  instructorInfo p: {
+  instructorText: {
     margin: '5px 0',
     color: '#666',
   },
@@ -334,6 +479,45 @@ const styles = {
     borderRadius: '8px',
     boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
   },
+  formsTableWrapper: {
+    background: 'white',
+    padding: '20px',
+    borderRadius: '8px',
+    boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+  },
+  table: {
+    width: '100%',
+    borderCollapse: 'collapse',
+  },
+  th: {
+    textAlign: 'left',
+    padding: '12px',
+    borderBottom: '2px solid #eee',
+    background: '#f8f9fa',
+  },
+  td: {
+    padding: '12px',
+    borderBottom: '1px solid #f1f1f1',
+    verticalAlign: 'top',
+  },
+  linkButton: {
+    padding: '8px 12px',
+    background: '#3498db',
+    color: 'white',
+    border: 'none',
+    borderRadius: '4px',
+    textDecoration: 'none',
+    display: 'inline-block',
+  },
+  secondaryLinkButton: {
+    padding: '8px 12px',
+    background: '#667eea',
+    color: 'white',
+    border: 'none',
+    borderRadius: '4px',
+    textDecoration: 'none',
+    display: 'inline-block',
+  },
   evaluationHeader: {
     display: 'flex',
     justifyContent: 'space-between',
@@ -350,7 +534,7 @@ const styles = {
   evaluationDetails: {
     marginBottom: '10px',
   },
-  evaluationDetails p: {
+  evaluationText: {
     margin: '5px 0',
     color: '#666',
   },

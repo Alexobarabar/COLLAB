@@ -39,6 +39,12 @@ router.get("/", (req, res) => {
     ]
   };
 
+  // Safely serialize initial data to avoid breaking out of <script> and prevent XSS
+  const safeInitialData = JSON.stringify(initialData)
+    .replace(/</g, "\\u003c")
+    .replace(/>/g, "\\u003e")
+    .replace(/&/g, "\\u0026");
+
   res.send(`<!doctype html>
 <html lang="en">
 <head>
@@ -195,7 +201,7 @@ router.get("/", (req, res) => {
 
   <!-- initial data from server -->
   <script>
-    window.__INITIAL_DASHBOARD__ = ${JSON.stringify(initialData)};
+    window.__INITIAL_DASHBOARD__ = ${safeInitialData};
   </script>
 
   <!-- Client JS: populate metrics, chart, and recent list -->

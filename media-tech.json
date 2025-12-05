@@ -1,0 +1,772 @@
+[
+  {
+    "id": 11250,
+    "date": "2020-05-28T08:00:00",
+    "date_gmt": "2020-05-28T08:00:00",
+    "guid": {
+      "rendered": "https://buksu.edu.ph/wp-content/uploads/2020/05/cas-logo-min.jpg"
+    },
+    "modified": "2020-05-29T00:10:32",
+    "modified_gmt": "2020-05-29T00:10:32",
+    "slug": "cas-logo-min",
+    "status": "inherit",
+    "type": "attachment",
+    "link": "https://buksu.edu.ph/college/cas/cas-logo-min/",
+    "title": {
+      "rendered": "cas-logo-min"
+    },
+    "author": 1,
+    "comment_status": "open",
+    "ping_status": "closed",
+    "template": "",
+    "meta": [],
+    "acf": [],
+    "description": {
+      "rendered": "<p class=\"attachment\"><a href='https://buksu.edu.ph/wp-content/uploads/2020/05/cas-logo-min.jpg'><img width=\"200\" height=\"200\" src=\"https://buksu.edu.ph/wp-content/uploads/2020/05/cas-logo-min-200x200.jpg\" class=\"attachment-medium size-medium\" alt=\"\" srcset=\"https://buksu.edu.ph/wp-content/uploads/2020/05/cas-logo-min-200x200.jpg 200w, https://buksu.edu.ph/wp-content/uploads/2020/05/cas-logo-min-1024x1024.jpg 1024w, https://buksu.edu.ph/wp-content/uploads/2020/05/cas-logo-min-150x150.jpg 150w, https://buksu.edu.ph/wp-content/uploads/2020/05/cas-logo-min-768x768.jpg 768w, https://buksu.edu.ph/wp-content/uploads/2020/05/cas-logo-min-300x300.jpg 300w, https://buksu.edu.ph/wp-content/uploads/2020/05/cas-logo-min.jpg 1107w\" sizes=\"(max-width: 200px) 100vw, 200px\" /></a></p>\n"
+    },
+    "caption": {
+      "rendered": "<p>College of Arts and Sciences</p>\n"
+    },
+    "alt_text": "",
+    "media_type": "image",
+    "mime_type": "image/jpeg",
+    "media_details": {
+      "width": 1107,
+      "height": 1107,
+      "file": "2020/05/cas-logo-min.jpg",
+      "sizes": {
+        "medium": {
+          "file": "cas-logo-min-200x200.jpg",
+          "width": 200,
+          "height": 200,
+          "mime_type": "image/jpeg",
+          "source_url": "https://buksu.edu.ph/wp-content/uploads/2020/05/cas-logo-min-200x200.jpg"
+        },
+        "large": {
+          "file": "cas-logo-min-1024x1024.jpg",
+          "width": 1024,
+          "height": 1024,
+          "mime_type": "image/jpeg",
+          "source_url": "https://buksu.edu.ph/wp-content/uploads/2020/05/cas-logo-min-1024x1024.jpg"
+        },
+        "thumbnail": {
+          "file": "cas-logo-min-150x150.jpg",
+          "width": 150,
+          "height": 150,
+          "mime_type": "image/jpeg",
+          "source_url": "https://buksu.edu.ph/wp-content/uploads/2020/05/cas-logo-min-150x150.jpg"
+        },
+        "medium_large": {
+          "file": "cas-logo-min-768x768.jpg",
+          "width": 768,
+          "height": 768,
+          "mime_type": "image/jpeg",
+          "source_url": "https://buksu.edu.ph/wp-content/uploads/2020/05/cas-logo-min-768x768.jpg"
+        },
+        "medium_old_300x300": {
+          "file": "cas-logo-min-300x300.jpg",
+          "width": 300,
+          "height": 300,
+          "mime_type": "image/jpeg",
+          "source_url": "https://buksu.edu.ph/wp-content/uploads/2020/05/cas-logo-min-300x300.jpg"
+        },
+        "full": {
+          "file": "cas-logo-min.jpg",
+          "width": 1107,
+          "height": 1107,
+          "mime_type": "image/jpeg",
+          "source_url": "https://buksu.edu.ph/wp-content/uploads/2020/05/cas-logo-min.jpg"
+        }
+      },
+      "image_meta": {
+        "aperture": "0",
+        "credit": "",
+        "camera": "",
+        "caption": "",
+        "created_timestamp": "0",
+        "copyright": "",
+        "focal_length": "0",
+        "iso": "0",
+        "shutter_speed": "0",
+        "title": "",
+        "orientation": "0",
+        "keywords": []
+      }
+    },
+    "post": 11264,
+    "source_url": "https://buksu.edu.ph/wp-content/uploads/2020/05/cas-logo-min.jpg",
+    "_links": {
+      "self": [
+        {
+          "href": "https://buksu.edu.ph/wp-json/wp/v2/media/11250"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://buksu.edu.ph/wp-json/wp/v2/media"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://buksu.edu.ph/wp-json/wp/v2/types/attachment"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://buksu.edu.ph/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://buksu.edu.ph/wp-json/wp/v2/comments?post=11250"
+        }
+      ]
+    }
+  },
+  {
+    "id": 11248,
+    "date": "2020-05-28T07:59:57",
+    "date_gmt": "2020-05-28T07:59:57",
+    "guid": {
+      "rendered": "https://buksu.edu.ph/wp-content/uploads/2020/05/cted-logo-min.jpg"
+    },
+    "modified": "2020-05-29T00:11:39",
+    "modified_gmt": "2020-05-29T00:11:39",
+    "slug": "cted-logo-min",
+    "status": "inherit",
+    "type": "attachment",
+    "link": "https://buksu.edu.ph/college/coe/cted-logo-min/",
+    "title": {
+      "rendered": "cted-logo-min"
+    },
+    "author": 1,
+    "comment_status": "open",
+    "ping_status": "closed",
+    "template": "",
+    "meta": [],
+    "acf": [],
+    "description": {
+      "rendered": "<p class=\"attachment\"><a href='https://buksu.edu.ph/wp-content/uploads/2020/05/cted-logo-min.jpg'><img width=\"200\" height=\"200\" src=\"https://buksu.edu.ph/wp-content/uploads/2020/05/cted-logo-min-200x200.jpg\" class=\"attachment-medium size-medium\" alt=\"\" srcset=\"https://buksu.edu.ph/wp-content/uploads/2020/05/cted-logo-min-200x200.jpg 200w, https://buksu.edu.ph/wp-content/uploads/2020/05/cted-logo-min-1024x1024.jpg 1024w, https://buksu.edu.ph/wp-content/uploads/2020/05/cted-logo-min-150x150.jpg 150w, https://buksu.edu.ph/wp-content/uploads/2020/05/cted-logo-min-768x768.jpg 768w, https://buksu.edu.ph/wp-content/uploads/2020/05/cted-logo-min-300x300.jpg 300w, https://buksu.edu.ph/wp-content/uploads/2020/05/cted-logo-min-1200x1200.jpg 1200w, https://buksu.edu.ph/wp-content/uploads/2020/05/cted-logo-min.jpg 1217w\" sizes=\"(max-width: 200px) 100vw, 200px\" /></a></p>\n"
+    },
+    "caption": {
+      "rendered": "<p>College of Education</p>\n"
+    },
+    "alt_text": "",
+    "media_type": "image",
+    "mime_type": "image/jpeg",
+    "media_details": {
+      "width": 1217,
+      "height": 1217,
+      "file": "2020/05/cted-logo-min.jpg",
+      "sizes": {
+        "medium": {
+          "file": "cted-logo-min-200x200.jpg",
+          "width": 200,
+          "height": 200,
+          "mime_type": "image/jpeg",
+          "source_url": "https://buksu.edu.ph/wp-content/uploads/2020/05/cted-logo-min-200x200.jpg"
+        },
+        "large": {
+          "file": "cted-logo-min-1024x1024.jpg",
+          "width": 1024,
+          "height": 1024,
+          "mime_type": "image/jpeg",
+          "source_url": "https://buksu.edu.ph/wp-content/uploads/2020/05/cted-logo-min-1024x1024.jpg"
+        },
+        "thumbnail": {
+          "file": "cted-logo-min-150x150.jpg",
+          "width": 150,
+          "height": 150,
+          "mime_type": "image/jpeg",
+          "source_url": "https://buksu.edu.ph/wp-content/uploads/2020/05/cted-logo-min-150x150.jpg"
+        },
+        "medium_large": {
+          "file": "cted-logo-min-768x768.jpg",
+          "width": 768,
+          "height": 768,
+          "mime_type": "image/jpeg",
+          "source_url": "https://buksu.edu.ph/wp-content/uploads/2020/05/cted-logo-min-768x768.jpg"
+        },
+        "medium_old_300x300": {
+          "file": "cted-logo-min-300x300.jpg",
+          "width": 300,
+          "height": 300,
+          "mime_type": "image/jpeg",
+          "source_url": "https://buksu.edu.ph/wp-content/uploads/2020/05/cted-logo-min-300x300.jpg"
+        },
+        "post-thumbnail": {
+          "file": "cted-logo-min-1200x1200.jpg",
+          "width": 1200,
+          "height": 1200,
+          "mime_type": "image/jpeg",
+          "source_url": "https://buksu.edu.ph/wp-content/uploads/2020/05/cted-logo-min-1200x1200.jpg"
+        },
+        "full": {
+          "file": "cted-logo-min.jpg",
+          "width": 1217,
+          "height": 1217,
+          "mime_type": "image/jpeg",
+          "source_url": "https://buksu.edu.ph/wp-content/uploads/2020/05/cted-logo-min.jpg"
+        }
+      },
+      "image_meta": {
+        "aperture": "0",
+        "credit": "",
+        "camera": "",
+        "caption": "",
+        "created_timestamp": "0",
+        "copyright": "",
+        "focal_length": "0",
+        "iso": "0",
+        "shutter_speed": "0",
+        "title": "",
+        "orientation": "0",
+        "keywords": []
+      }
+    },
+    "post": 11265,
+    "source_url": "https://buksu.edu.ph/wp-content/uploads/2020/05/cted-logo-min.jpg",
+    "_links": {
+      "self": [
+        {
+          "href": "https://buksu.edu.ph/wp-json/wp/v2/media/11248"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://buksu.edu.ph/wp-json/wp/v2/media"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://buksu.edu.ph/wp-json/wp/v2/types/attachment"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://buksu.edu.ph/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://buksu.edu.ph/wp-json/wp/v2/comments?post=11248"
+        }
+      ]
+    }
+  },
+  {
+    "id": 11247,
+    "date": "2020-05-28T07:59:56",
+    "date_gmt": "2020-05-28T07:59:56",
+    "guid": {
+      "rendered": "https://buksu.edu.ph/wp-content/uploads/2020/05/cot-logo-min.jpg"
+    },
+    "modified": "2020-05-29T00:12:16",
+    "modified_gmt": "2020-05-29T00:12:16",
+    "slug": "cot-logo-min",
+    "status": "inherit",
+    "type": "attachment",
+    "link": "https://buksu.edu.ph/college/cot/cot-logo-min/",
+    "title": {
+      "rendered": "cot-logo-min"
+    },
+    "author": 1,
+    "comment_status": "open",
+    "ping_status": "closed",
+    "template": "",
+    "meta": [],
+    "acf": [],
+    "description": {
+      "rendered": "<p class=\"attachment\"><a href='https://buksu.edu.ph/wp-content/uploads/2020/05/cot-logo-min.jpg'><img width=\"200\" height=\"200\" src=\"https://buksu.edu.ph/wp-content/uploads/2020/05/cot-logo-min-200x200.jpg\" class=\"attachment-medium size-medium\" alt=\"\" srcset=\"https://buksu.edu.ph/wp-content/uploads/2020/05/cot-logo-min-200x200.jpg 200w, https://buksu.edu.ph/wp-content/uploads/2020/05/cot-logo-min-1024x1024.jpg 1024w, https://buksu.edu.ph/wp-content/uploads/2020/05/cot-logo-min-150x150.jpg 150w, https://buksu.edu.ph/wp-content/uploads/2020/05/cot-logo-min-768x768.jpg 768w, https://buksu.edu.ph/wp-content/uploads/2020/05/cot-logo-min-300x300.jpg 300w, https://buksu.edu.ph/wp-content/uploads/2020/05/cot-logo-min.jpg 1099w\" sizes=\"(max-width: 200px) 100vw, 200px\" /></a></p>\n"
+    },
+    "caption": {
+      "rendered": "<p>College of Technology</p>\n"
+    },
+    "alt_text": "",
+    "media_type": "image",
+    "mime_type": "image/jpeg",
+    "media_details": {
+      "width": 1099,
+      "height": 1099,
+      "file": "2020/05/cot-logo-min.jpg",
+      "sizes": {
+        "medium": {
+          "file": "cot-logo-min-200x200.jpg",
+          "width": 200,
+          "height": 200,
+          "mime_type": "image/jpeg",
+          "source_url": "https://buksu.edu.ph/wp-content/uploads/2020/05/cot-logo-min-200x200.jpg"
+        },
+        "large": {
+          "file": "cot-logo-min-1024x1024.jpg",
+          "width": 1024,
+          "height": 1024,
+          "mime_type": "image/jpeg",
+          "source_url": "https://buksu.edu.ph/wp-content/uploads/2020/05/cot-logo-min-1024x1024.jpg"
+        },
+        "thumbnail": {
+          "file": "cot-logo-min-150x150.jpg",
+          "width": 150,
+          "height": 150,
+          "mime_type": "image/jpeg",
+          "source_url": "https://buksu.edu.ph/wp-content/uploads/2020/05/cot-logo-min-150x150.jpg"
+        },
+        "medium_large": {
+          "file": "cot-logo-min-768x768.jpg",
+          "width": 768,
+          "height": 768,
+          "mime_type": "image/jpeg",
+          "source_url": "https://buksu.edu.ph/wp-content/uploads/2020/05/cot-logo-min-768x768.jpg"
+        },
+        "medium_old_300x300": {
+          "file": "cot-logo-min-300x300.jpg",
+          "width": 300,
+          "height": 300,
+          "mime_type": "image/jpeg",
+          "source_url": "https://buksu.edu.ph/wp-content/uploads/2020/05/cot-logo-min-300x300.jpg"
+        },
+        "full": {
+          "file": "cot-logo-min.jpg",
+          "width": 1099,
+          "height": 1099,
+          "mime_type": "image/jpeg",
+          "source_url": "https://buksu.edu.ph/wp-content/uploads/2020/05/cot-logo-min.jpg"
+        }
+      },
+      "image_meta": {
+        "aperture": "0",
+        "credit": "",
+        "camera": "",
+        "caption": "",
+        "created_timestamp": "0",
+        "copyright": "",
+        "focal_length": "0",
+        "iso": "0",
+        "shutter_speed": "0",
+        "title": "",
+        "orientation": "0",
+        "keywords": []
+      }
+    },
+    "post": 11266,
+    "source_url": "https://buksu.edu.ph/wp-content/uploads/2020/05/cot-logo-min.jpg",
+    "_links": {
+      "self": [
+        {
+          "href": "https://buksu.edu.ph/wp-json/wp/v2/media/11247"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://buksu.edu.ph/wp-json/wp/v2/media"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://buksu.edu.ph/wp-json/wp/v2/types/attachment"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://buksu.edu.ph/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://buksu.edu.ph/wp-json/wp/v2/comments?post=11247"
+        }
+      ]
+    }
+  },
+  {
+    "id": 11246,
+    "date": "2020-05-28T07:59:56",
+    "date_gmt": "2020-05-28T07:59:56",
+    "guid": {
+      "rendered": "https://buksu.edu.ph/wp-content/uploads/2020/05/con-logo-min.jpg"
+    },
+    "modified": "2020-05-29T00:13:16",
+    "modified_gmt": "2020-05-29T00:13:16",
+    "slug": "con-logo-min",
+    "status": "inherit",
+    "type": "attachment",
+    "link": "https://buksu.edu.ph/college/con/con-logo-min/",
+    "title": {
+      "rendered": "con-logo-min"
+    },
+    "author": 1,
+    "comment_status": "open",
+    "ping_status": "closed",
+    "template": "",
+    "meta": [],
+    "acf": [],
+    "description": {
+      "rendered": "<p class=\"attachment\"><a href='https://buksu.edu.ph/wp-content/uploads/2020/05/con-logo-min.jpg'><img width=\"199\" height=\"200\" src=\"https://buksu.edu.ph/wp-content/uploads/2020/05/con-logo-min-199x200.jpg\" class=\"attachment-medium size-medium\" alt=\"\" srcset=\"https://buksu.edu.ph/wp-content/uploads/2020/05/con-logo-min-199x200.jpg 199w, https://buksu.edu.ph/wp-content/uploads/2020/05/con-logo-min-150x150.jpg 150w, https://buksu.edu.ph/wp-content/uploads/2020/05/con-logo-min-300x300.jpg 300w, https://buksu.edu.ph/wp-content/uploads/2020/05/con-logo-min.jpg 666w\" sizes=\"(max-width: 199px) 100vw, 199px\" /></a></p>\n"
+    },
+    "caption": {
+      "rendered": "<p>College of Nursing</p>\n"
+    },
+    "alt_text": "",
+    "media_type": "image",
+    "mime_type": "image/jpeg",
+    "media_details": {
+      "width": 666,
+      "height": 669,
+      "file": "2020/05/con-logo-min.jpg",
+      "sizes": {
+        "medium": {
+          "file": "con-logo-min-199x200.jpg",
+          "width": 199,
+          "height": 200,
+          "mime_type": "image/jpeg",
+          "source_url": "https://buksu.edu.ph/wp-content/uploads/2020/05/con-logo-min-199x200.jpg"
+        },
+        "thumbnail": {
+          "file": "con-logo-min-150x150.jpg",
+          "width": 150,
+          "height": 150,
+          "mime_type": "image/jpeg",
+          "source_url": "https://buksu.edu.ph/wp-content/uploads/2020/05/con-logo-min-150x150.jpg"
+        },
+        "medium_old_300x300": {
+          "file": "con-logo-min-300x300.jpg",
+          "width": 300,
+          "height": 300,
+          "mime_type": "image/jpeg",
+          "source_url": "https://buksu.edu.ph/wp-content/uploads/2020/05/con-logo-min-300x300.jpg"
+        },
+        "full": {
+          "file": "con-logo-min.jpg",
+          "width": 666,
+          "height": 669,
+          "mime_type": "image/jpeg",
+          "source_url": "https://buksu.edu.ph/wp-content/uploads/2020/05/con-logo-min.jpg"
+        }
+      },
+      "image_meta": {
+        "aperture": "0",
+        "credit": "",
+        "camera": "",
+        "caption": "",
+        "created_timestamp": "0",
+        "copyright": "",
+        "focal_length": "0",
+        "iso": "0",
+        "shutter_speed": "0",
+        "title": "",
+        "orientation": "0",
+        "keywords": []
+      }
+    },
+    "post": 11267,
+    "source_url": "https://buksu.edu.ph/wp-content/uploads/2020/05/con-logo-min.jpg",
+    "_links": {
+      "self": [
+        {
+          "href": "https://buksu.edu.ph/wp-json/wp/v2/media/11246"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://buksu.edu.ph/wp-json/wp/v2/media"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://buksu.edu.ph/wp-json/wp/v2/types/attachment"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://buksu.edu.ph/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://buksu.edu.ph/wp-json/wp/v2/comments?post=11246"
+        }
+      ]
+    }
+  },
+  {
+    "id": 11245,
+    "date": "2020-05-28T07:59:55",
+    "date_gmt": "2020-05-28T07:59:55",
+    "guid": {
+      "rendered": "https://buksu.edu.ph/wp-content/uploads/2020/05/col-logo-min.jpg"
+    },
+    "modified": "2020-05-29T00:16:17",
+    "modified_gmt": "2020-05-29T00:16:17",
+    "slug": "col-logo-min",
+    "status": "inherit",
+    "type": "attachment",
+    "link": "https://buksu.edu.ph/college/col/col-logo-min/",
+    "title": {
+      "rendered": "col-logo-min"
+    },
+    "author": 1,
+    "comment_status": "open",
+    "ping_status": "closed",
+    "template": "",
+    "meta": [],
+    "acf": [],
+    "description": {
+      "rendered": "<p class=\"attachment\"><a href='https://buksu.edu.ph/wp-content/uploads/2020/05/col-logo-min.jpg'><img width=\"200\" height=\"200\" src=\"https://buksu.edu.ph/wp-content/uploads/2020/05/col-logo-min-200x200.jpg\" class=\"attachment-medium size-medium\" alt=\"\" srcset=\"https://buksu.edu.ph/wp-content/uploads/2020/05/col-logo-min-200x200.jpg 200w, https://buksu.edu.ph/wp-content/uploads/2020/05/col-logo-min-1024x1024.jpg 1024w, https://buksu.edu.ph/wp-content/uploads/2020/05/col-logo-min-150x150.jpg 150w, https://buksu.edu.ph/wp-content/uploads/2020/05/col-logo-min-768x768.jpg 768w, https://buksu.edu.ph/wp-content/uploads/2020/05/col-logo-min-300x300.jpg 300w, https://buksu.edu.ph/wp-content/uploads/2020/05/col-logo-min-1200x1200.jpg 1200w, https://buksu.edu.ph/wp-content/uploads/2020/05/col-logo-min.jpg 1417w\" sizes=\"(max-width: 200px) 100vw, 200px\" /></a></p>\n"
+    },
+    "caption": {
+      "rendered": "<p>College of Law</p>\n"
+    },
+    "alt_text": "",
+    "media_type": "image",
+    "mime_type": "image/jpeg",
+    "media_details": {
+      "width": 1417,
+      "height": 1417,
+      "file": "2020/05/col-logo-min.jpg",
+      "sizes": {
+        "medium": {
+          "file": "col-logo-min-200x200.jpg",
+          "width": 200,
+          "height": 200,
+          "mime_type": "image/jpeg",
+          "source_url": "https://buksu.edu.ph/wp-content/uploads/2020/05/col-logo-min-200x200.jpg"
+        },
+        "large": {
+          "file": "col-logo-min-1024x1024.jpg",
+          "width": 1024,
+          "height": 1024,
+          "mime_type": "image/jpeg",
+          "source_url": "https://buksu.edu.ph/wp-content/uploads/2020/05/col-logo-min-1024x1024.jpg"
+        },
+        "thumbnail": {
+          "file": "col-logo-min-150x150.jpg",
+          "width": 150,
+          "height": 150,
+          "mime_type": "image/jpeg",
+          "source_url": "https://buksu.edu.ph/wp-content/uploads/2020/05/col-logo-min-150x150.jpg"
+        },
+        "medium_large": {
+          "file": "col-logo-min-768x768.jpg",
+          "width": 768,
+          "height": 768,
+          "mime_type": "image/jpeg",
+          "source_url": "https://buksu.edu.ph/wp-content/uploads/2020/05/col-logo-min-768x768.jpg"
+        },
+        "medium_old_300x300": {
+          "file": "col-logo-min-300x300.jpg",
+          "width": 300,
+          "height": 300,
+          "mime_type": "image/jpeg",
+          "source_url": "https://buksu.edu.ph/wp-content/uploads/2020/05/col-logo-min-300x300.jpg"
+        },
+        "post-thumbnail": {
+          "file": "col-logo-min-1200x1200.jpg",
+          "width": 1200,
+          "height": 1200,
+          "mime_type": "image/jpeg",
+          "source_url": "https://buksu.edu.ph/wp-content/uploads/2020/05/col-logo-min-1200x1200.jpg"
+        },
+        "full": {
+          "file": "col-logo-min.jpg",
+          "width": 1417,
+          "height": 1417,
+          "mime_type": "image/jpeg",
+          "source_url": "https://buksu.edu.ph/wp-content/uploads/2020/05/col-logo-min.jpg"
+        }
+      },
+      "image_meta": {
+        "aperture": "0",
+        "credit": "",
+        "camera": "",
+        "caption": "",
+        "created_timestamp": "0",
+        "copyright": "",
+        "focal_length": "0",
+        "iso": "0",
+        "shutter_speed": "0",
+        "title": "",
+        "orientation": "0",
+        "keywords": []
+      }
+    },
+    "post": 11268,
+    "source_url": "https://buksu.edu.ph/wp-content/uploads/2020/05/col-logo-min.jpg",
+    "_links": {
+      "self": [
+        {
+          "href": "https://buksu.edu.ph/wp-json/wp/v2/media/11245"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://buksu.edu.ph/wp-json/wp/v2/media"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://buksu.edu.ph/wp-json/wp/v2/types/attachment"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://buksu.edu.ph/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://buksu.edu.ph/wp-json/wp/v2/comments?post=11245"
+        }
+      ]
+    }
+  },
+  {
+    "id": 11244,
+    "date": "2020-05-28T07:59:54",
+    "date_gmt": "2020-05-28T07:59:54",
+    "guid": {
+      "rendered": "https://buksu.edu.ph/wp-content/uploads/2020/05/cob-logo-min.jpg"
+    },
+    "modified": "2020-05-29T00:16:57",
+    "modified_gmt": "2020-05-29T00:16:57",
+    "slug": "cob-logo-min",
+    "status": "inherit",
+    "type": "attachment",
+    "link": "https://buksu.edu.ph/college/cob/cob-logo-min/",
+    "title": {
+      "rendered": "cob-logo-min"
+    },
+    "author": 1,
+    "comment_status": "open",
+    "ping_status": "closed",
+    "template": "",
+    "meta": [],
+    "acf": [],
+    "description": {
+      "rendered": "<p class=\"attachment\"><a href='https://buksu.edu.ph/wp-content/uploads/2020/05/cob-logo-min.jpg'><img width=\"200\" height=\"200\" src=\"https://buksu.edu.ph/wp-content/uploads/2020/05/cob-logo-min-200x200.jpg\" class=\"attachment-medium size-medium\" alt=\"\" srcset=\"https://buksu.edu.ph/wp-content/uploads/2020/05/cob-logo-min-200x200.jpg 200w, https://buksu.edu.ph/wp-content/uploads/2020/05/cob-logo-min-1022x1024.jpg 1022w, https://buksu.edu.ph/wp-content/uploads/2020/05/cob-logo-min-150x150.jpg 150w, https://buksu.edu.ph/wp-content/uploads/2020/05/cob-logo-min-768x770.jpg 768w, https://buksu.edu.ph/wp-content/uploads/2020/05/cob-logo-min-1532x1536.jpg 1532w, https://buksu.edu.ph/wp-content/uploads/2020/05/cob-logo-min-300x300.jpg 300w, https://buksu.edu.ph/wp-content/uploads/2020/05/cob-logo-min-1200x1203.jpg 1200w, https://buksu.edu.ph/wp-content/uploads/2020/05/cob-logo-min.jpg 1724w\" sizes=\"(max-width: 200px) 100vw, 200px\" /></a></p>\n"
+    },
+    "caption": {
+      "rendered": "<p>College of Business</p>\n"
+    },
+    "alt_text": "",
+    "media_type": "image",
+    "mime_type": "image/jpeg",
+    "media_details": {
+      "width": 1724,
+      "height": 1728,
+      "file": "2020/05/cob-logo-min.jpg",
+      "sizes": {
+        "medium": {
+          "file": "cob-logo-min-200x200.jpg",
+          "width": 200,
+          "height": 200,
+          "mime_type": "image/jpeg",
+          "source_url": "https://buksu.edu.ph/wp-content/uploads/2020/05/cob-logo-min-200x200.jpg"
+        },
+        "large": {
+          "file": "cob-logo-min-1022x1024.jpg",
+          "width": 1022,
+          "height": 1024,
+          "mime_type": "image/jpeg",
+          "source_url": "https://buksu.edu.ph/wp-content/uploads/2020/05/cob-logo-min-1022x1024.jpg"
+        },
+        "thumbnail": {
+          "file": "cob-logo-min-150x150.jpg",
+          "width": 150,
+          "height": 150,
+          "mime_type": "image/jpeg",
+          "source_url": "https://buksu.edu.ph/wp-content/uploads/2020/05/cob-logo-min-150x150.jpg"
+        },
+        "medium_large": {
+          "file": "cob-logo-min-768x770.jpg",
+          "width": 768,
+          "height": 770,
+          "mime_type": "image/jpeg",
+          "source_url": "https://buksu.edu.ph/wp-content/uploads/2020/05/cob-logo-min-768x770.jpg"
+        },
+        "1536x1536": {
+          "file": "cob-logo-min-1532x1536.jpg",
+          "width": 1532,
+          "height": 1536,
+          "mime_type": "image/jpeg",
+          "source_url": "https://buksu.edu.ph/wp-content/uploads/2020/05/cob-logo-min-1532x1536.jpg"
+        },
+        "medium_old_300x300": {
+          "file": "cob-logo-min-300x300.jpg",
+          "width": 300,
+          "height": 300,
+          "mime_type": "image/jpeg",
+          "source_url": "https://buksu.edu.ph/wp-content/uploads/2020/05/cob-logo-min-300x300.jpg"
+        },
+        "post-thumbnail": {
+          "file": "cob-logo-min-1200x1203.jpg",
+          "width": 1200,
+          "height": 1203,
+          "mime_type": "image/jpeg",
+          "source_url": "https://buksu.edu.ph/wp-content/uploads/2020/05/cob-logo-min-1200x1203.jpg"
+        },
+        "full": {
+          "file": "cob-logo-min.jpg",
+          "width": 1724,
+          "height": 1728,
+          "mime_type": "image/jpeg",
+          "source_url": "https://buksu.edu.ph/wp-content/uploads/2020/05/cob-logo-min.jpg"
+        }
+      },
+      "image_meta": {
+        "aperture": "0",
+        "credit": "",
+        "camera": "",
+        "caption": "",
+        "created_timestamp": "0",
+        "copyright": "",
+        "focal_length": "0",
+        "iso": "0",
+        "shutter_speed": "0",
+        "title": "",
+        "orientation": "0",
+        "keywords": []
+      }
+    },
+    "post": 11269,
+    "source_url": "https://buksu.edu.ph/wp-content/uploads/2020/05/cob-logo-min.jpg",
+    "_links": {
+      "self": [
+        {
+          "href": "https://buksu.edu.ph/wp-json/wp/v2/media/11244"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://buksu.edu.ph/wp-json/wp/v2/media"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://buksu.edu.ph/wp-json/wp/v2/types/attachment"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://buksu.edu.ph/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://buksu.edu.ph/wp-json/wp/v2/comments?post=11244"
+        }
+      ]
+    }
+  }
+]

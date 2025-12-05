@@ -6,11 +6,12 @@
   "type": "commonjs",
   "scripts": {
     "start": "node backend/server.js",
-    "server": "nodemon backend/server.js",
+    "server": "set NODE_OPTIONS=--openssl-legacy-provider && nodemon backend/server.js",
     "client": "npm start --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "dependencies": {
+    "googleapis": "^164.1.0",
     "nodemailer": "^7.0.10"
   },
   "devDependencies": {
